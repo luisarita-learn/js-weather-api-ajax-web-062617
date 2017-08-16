@@ -1,15 +1,28 @@
 function getFahrenheits(result){
-  // Your code goes here
+  let farenheits = result.hourly_forecast.map(result => result.temp.english)
+  return farenheits
 }
 
 function getHours(result){
-  // Your code goes here
+  //console.log("hours", result.hourly_forecast)
+  let hours = result.hourly_forecast.map(result => result.FCTTIME.hour)
+  return hours
 }
 
 function generateDataSet(labels, data) {
-  // Your code goes here
+  return {
+    labels: labels,
+    datasets: [{
+      data: data,
+      //backgroundColor: "rgba(153, 255, 51, 0.4)"
+    }]
+  }
 }
 
 function makeAjaxRequest(endpoint, success) {
-  // Your code goes here
+  fetch(endpoint).then(function(result){
+    return result.json()
+  }).then(function(result){
+    success(result)
+  })
 }
